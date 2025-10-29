@@ -2,6 +2,19 @@ from google.cloud import bigquery
 import pandas as pd
 import streamlit as st
 
+def fetch_covid_data() -> pd.DataFrame:
+    """
+    Fetches person profiles from BigQuery.
+    
+    Returns:
+        pd.DataFrame: DataFrame containing covid data
+    """
+    client = bigquery.Client(project="sensei-seeker", location="US")
+    query = f"""
+        SELECT * FROM `bigquery-public-data.covid19_open_data.covid19_open_data` LIMIT 10
+    """
+    
+    return client.query(query).to_dataframe()
 
 def fetch_sandi_data(table_name: str="sensei-seeker.sandi.profiles_2024") -> pd.DataFrame:
     """
