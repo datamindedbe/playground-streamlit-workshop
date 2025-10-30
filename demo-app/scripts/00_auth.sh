@@ -7,4 +7,5 @@ echo 'PATH=/workspaces/tools/google-cloud-sdk/bin:$PATH' >> ~/.bashrc
 rm google-cloud-cli-*
 . ~/.bashrc
 
-#curl [TODO] > key.json
+# Get this from ⚠️ public Google Cloud bucket
+curl $PUBLIC_BUCKET_GOOGLE_KEY > key.json
