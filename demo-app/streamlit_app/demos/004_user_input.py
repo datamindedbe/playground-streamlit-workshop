@@ -1,5 +1,3 @@
-
-
 # Widget overview
 # Dataframe
 
@@ -7,7 +5,9 @@ import pandas as pd
 import streamlit as st
 
 st.title("Widgets!! 🎚️🎛️")
-st.text("Widgets can help get user input and return values that can be stored in variables.")
+st.text(
+    "Widgets can help get user input and return values that can be stored in variables."
+)
 
 st.header("Basic widgets")
 
@@ -33,13 +33,13 @@ You entered:
 
 st.header("Fancy widgets")
 
-multiselect = st.multiselect("Multiselect", options=["Option 1", "Option 2", "Option 3"])
+multiselect = st.multiselect(
+    "Multiselect", options=["Option 1", "Option 2", "Option 3"]
+)
 options = ["Client 1", "Client 2", "Client 3"]
 pills = st.pills("Clients", options, selection_mode="multi")
 options = ["North", "East", "South", "West"]
-selection = st.segmented_control(
-    "Directions", options, selection_mode="multi"
-)
+selection = st.segmented_control("Directions", options, selection_mode="multi")
 
 st.markdown(f"""
 You selected:
@@ -52,19 +52,21 @@ You selected:
 st.header("Data input")
 
 st.subheader("Basic")
-df = pd.DataFrame({
-    "numbers": [1, 2, 3, 4, 5],
-    "text": ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
-    "bool": [True, False, True, False, True],
-     "sales": [200, 550, 1000, 80, 100],
-})
+df = pd.DataFrame(
+    {
+        "numbers": [1, 2, 3, 4, 5],
+        "text": ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
+        "bool": [True, False, True, False, True],
+        "sales": [200, 550, 1000, 80, 100],
+    }
+)
 st.data_editor(df)
 
 st.subheader("Fancy")
 
 
 st.data_editor(
-    df, 
+    df,
     hide_index=True,
     num_rows="dynamic",
     column_config={
@@ -84,5 +86,5 @@ st.data_editor(
             min_value=0,
             max_value=1000,
         ),
-    }
-    )
+    },
+)

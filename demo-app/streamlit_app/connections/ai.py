@@ -1,14 +1,11 @@
 import os
-from pathlib import Path
 import tempfile
 import google.generativeai as genai
 
 
-
-
-def get_ai_response(prompt: str, file = None) -> str:
+def get_ai_response(prompt: str, file=None) -> str:
     model = genai.GenerativeModel("gemini-1.5-flash")
-    
+
     if file is not None:
         with tempfile.TemporaryDirectory() as temp_dir:
             file_path = os.path.join(temp_dir, file.name)
@@ -18,5 +15,5 @@ def get_ai_response(prompt: str, file = None) -> str:
             response = model.generate_content([prompt, sample_pdf])
     else:
         response = model.generate_content([prompt])
-    
+
     return response.text

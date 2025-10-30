@@ -36,14 +36,17 @@ if start_progress:
 
 st.header("Caching")
 
+
 def load_uncached():
     time.sleep(2)
     return "This is a text"
+
 
 @st.cache_data(ttl=10, show_spinner=True)
 def load_cached():
     time.sleep(2)
     return "This is cached text"
+
 
 load1 = st.button("load uncached", key="load_uncached")
 load2 = st.button("load cached", key="load_cached")

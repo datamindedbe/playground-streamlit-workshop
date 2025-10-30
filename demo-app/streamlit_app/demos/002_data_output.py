@@ -1,8 +1,7 @@
 import streamlit as st
+import pandas as pd
 
 st.title("Data output overview")
-
-import pandas as pd
 
 
 st.header("Metrics")
@@ -13,7 +12,7 @@ st.header("Semi-structured data")
 json_doc = {
     "name": "John Doe",
     "age": 30,
-    "skills": ["Python", "SQL", "Machine Learning"]
+    "skills": ["Python", "SQL", "Machine Learning"],
 }
 
 st.json(json_doc, expanded=True)
@@ -21,13 +20,15 @@ st.json(json_doc, expanded=True)
 
 st.header("Structured data")
 # Create a sample DataFrame
-profiles = pd.DataFrame({
-    'Person': ['John Doe', 'Jane Smith', 'Bob Wilson', 'Alice Brown'],
-    'Level': ['Senior', 'Mid', 'Junior', 'Senior'],
-    'Level_code': ['L5', 'L3', 'L2', 'L5'],
-    'Level_number': [5, 3, 2, 5],
-    'Client': ['ACME Corp', 'TechStart', 'BigCo', 'Innovate Inc']
-})
+profiles = pd.DataFrame(
+    {
+        "Person": ["John Doe", "Jane Smith", "Bob Wilson", "Alice Brown"],
+        "Level": ["Senior", "Mid", "Junior", "Senior"],
+        "Level_code": ["L5", "L3", "L2", "L5"],
+        "Level_number": [5, 3, 2, 5],
+        "Client": ["ACME Corp", "TechStart", "BigCo", "Innovate Inc"],
+    }
+)
 
 
 st.subheader("st.table()")
@@ -35,23 +36,36 @@ st.text("Super basic way of showing your data in a dataframe (or list).")
 st.table(profiles)
 
 st.subheader("st.dataframe()")
-st.markdown("Note that this is way cooler, as you can **sort, zoom, search, download** 🥳!")
+st.markdown(
+    "Note that this is way cooler, as you can **sort, zoom, search, download** 🥳!"
+)
 st.dataframe(profiles)
 
 
 st.header("Unstructured data")
 
 st.subheader("Image files")
-st.text("A simple image in the folder, pointed to by a relative path from the root of the app.")
-st.image('./streamlit_app/demos/dmlogo_nonstatic.png', width=200, caption="This is a caption of a non-static image")
-st.image('./streamlit_app/demos/dmlogo_wide.svg', width=200, caption="Even SVG support!")
+st.text(
+    "A simple image in the folder, pointed to by a relative path from the root of the app."
+)
+st.image(
+    "./streamlit_app/demos/dmlogo_nonstatic.png",
+    width=200,
+    caption="This is a caption of a non-static image",
+)
+st.image(
+    "./streamlit_app/demos/dmlogo_wide.svg", width=200, caption="Even SVG support!"
+)
 
 st.subheader("Static Image files")
 static_image = "app/static/dm-black.png"
-st.markdown(f"This is a static file hosted at `{static_image}` (look in the `static` folder), made into a circle using some dirty css.")
+st.markdown(
+    f"This is a static file hosted at `{static_image}` (look in the `static` folder), made into a circle using some dirty css."
+)
 
 
-st.markdown("""
+st.markdown(
+    """
   <style>
 
     /*the main div*/
@@ -71,7 +85,9 @@ st.markdown("""
     }
   
   </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 a = f"""
     <div style="display: flex; align-items: center; gap: 20px;">
@@ -85,4 +101,3 @@ a = f"""
     </div>
 """
 st.markdown(a, unsafe_allow_html=True)
-

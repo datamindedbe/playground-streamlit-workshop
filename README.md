@@ -4,10 +4,9 @@
 
 Workshop repo for Streamlit
 
-```
-gcloud auth application-default login
+```bash
+# gcloud auth application-default login
+sh demo-app/scripts/00_setup.sh
 cd demo-app
-poetry install
-bash scripts/01_run.sh
+sh scripts/01_run.sh
 ```
-

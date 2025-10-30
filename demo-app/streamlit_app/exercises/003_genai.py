@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_app.connections.ai import get_ai_response
 
 st.title("GenAI")
 

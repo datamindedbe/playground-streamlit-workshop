@@ -1,4 +1,5 @@
 import streamlit as st
+
 st.title("My First Streamlit App")
 
 # Add a text input
@@ -20,8 +21,6 @@ st.write(f"Selected number: {number}")
 
 # Add a selectbox
 option = st.sidebar.selectbox(
-    "What's your favorite color?",
-    ["Red", "Green", "Blue", "Yellow"]
+    "What's your favorite color?", ["Red", "Green", "Blue", "Yellow"]
 )
 st.write(f"Your favorite color is {option}")
-

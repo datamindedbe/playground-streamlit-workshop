@@ -1,7 +1,6 @@
 import streamlit as st
 
 
-
 # Set page title
 st.title("Text output overview")
 
@@ -21,12 +20,17 @@ Material design icons are available too:
 """)
 
 st.text("Let's add a divider")
-st.divider() # 👈 Draws a horizontal rule
+st.divider()  # 👈 Draws a horizontal rule
 st.text("and some text below it.")
 
-st.caption("Sometimes you're in need of captions for footnotes, or other explanatory text.")
+st.caption(
+    "Sometimes you're in need of captions for footnotes, or other explanatory text."
+)
 st.caption("This has **markdown** and :red[color] support as well! :sunglasses:")
-st.caption("You can even add help, hover me! 👉", help="This is not the tooltip you're looking for...")
+st.caption(
+    "You can even add help, hover me! 👉",
+    help="This is not the tooltip you're looking for...",
+)
 
 st.subheader("Markdown")
 
@@ -36,7 +40,9 @@ st.markdown("""
 """)
 
 st.subheader("Code")
-st.text("Code environment with highlighting, line numbers and copy button (line wrapping optional).")
+st.text(
+    "Code environment with highlighting, line numbers and copy button (line wrapping optional)."
+)
 example_yaml = """
 user:
   name: John Doe
@@ -59,19 +65,24 @@ settings:
 st.code(example_yaml, language="yaml", line_numbers=True)
 
 st.subheader("Math")
-st.latex(r'''
+st.latex(r"""
     a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =
     \sum_{k=0}^{n-1} ar^k =
     a \left(\frac{1-r^{n}}{1-r}\right)
-    ''')
+    """)
 
 
 st.subheader("Information boxes")
 
 st.text("You can use built-in message boxes, with optional and customizable icons:")
 st.info("info box - useful for general information", icon=":material/info:")
-st.success("success box - great for showing when things work!", icon=":material/check_circle:")
-st.warning("warning box - use it to alert users about potential issues", icon=":material/warning:")
+st.success(
+    "success box - great for showing when things work!", icon=":material/check_circle:"
+)
+st.warning(
+    "warning box - use it to alert users about potential issues",
+    icon=":material/warning:",
+)
 st.error("error box - for when something goes wrong", icon=":material/error:")
 st.error("error box - custom flame icon", icon="🔥")
 st.error("error box - no icon")
