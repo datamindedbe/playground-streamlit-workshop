@@ -7,13 +7,10 @@ WITH
     -- Convert string date to actual DATE object
     PARSE_DATE('%Y%m%d', CONCAT(year, mo, da)) AS date,
     -- Handle missing data flags (9999.9 or 99.99)
-    -- All temperatures in Fahrenheit for now
+    -- Temperatures in Fahrenheit for now
     NULLIF(TEMP, 9999.9) AS avg_temp_f,
     NULLIF(max, 9999.9) AS max_temp_f,
-    NULLIF(min, 9999.9) AS min_temp_f,
-    -- Rain in inches for now
-    NULLIF(prcp, 99.99) AS precipitation_in,
-    SAFE_CAST(NULLIF(wdsp, '999.9') AS FLOAT64) AS wind_speed_knots
+    NULLIF(min, 9999.9) AS min_temp_f
   FROM
     `bigquery-public-data.noaa_gsod.gsod2025`
   ),
@@ -21,9 +18,7 @@ WITH
   BELGIAN_STATION_DATA AS (
   SELECT
     usaf,
-    name,
-    lat,
-    lon
+    name
   FROM
     `bigquery-public-data.noaa_gsod.stations`
   WHERE
@@ -32,20 +27,12 @@ WITH
   )
 
 SELECT
-  -- From STATIONS CTE
   B.name AS station_name,
-  B.lat,
-  B.lon,
-  
-  -- From WEATHER CTE
   W.date,
-  
   -- Convert to easier to understand metrics (Celsius, millimeter and kilometer per hour)
   ROUND((W.avg_temp_f - 32) * 5 / 9, 1) AS avg_temp_celsius,
-  ROUND((W.max_temp_f - 32) * 5 / 9, 1) AS max_temp_celsius,
   ROUND((W.min_temp_f - 32) * 5 / 9, 1) AS min_temp_celsius,
-  ROUND(W.precipitation_in * 25.4, 1) AS precipitation_mm,
-  ROUND(W.wind_speed_knots * 1.852, 1) AS wind_speed_kmh
+  ROUND((W.max_temp_f - 32) * 5 / 9, 1) AS max_temp_celsius
 FROM
   WEATHER_DATA AS W
 INNER JOIN
