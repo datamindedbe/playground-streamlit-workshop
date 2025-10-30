@@ -7,8 +7,6 @@ st.title("Plotting")
 # Get the data
 df = fetch_belgian_weather_data()
 
-st.dataframe(df)
-
 st.header("Assignment 1: Plotting")
 
 st.markdown("""

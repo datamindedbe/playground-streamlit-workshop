@@ -18,7 +18,6 @@ def load_query(filepath: str) -> str:
         return ""
 
 
-@st.cache_data
 def fetch_belgian_weather_data(project_id: str = "sensei-seeker") -> pd.DataFrame:
     """The SQL logic is stored in 'get_belgian_weather.sql'."""
 
@@ -31,6 +30,5 @@ def fetch_belgian_weather_data(project_id: str = "sensei-seeker") -> pd.DataFram
         st.stop()
 
     client = bigquery.Client(project=project_id, location="US")
-    st.write(f"*(Running query on project: `{project_id}`)*")
 
     return client.query(sql_query).to_dataframe()

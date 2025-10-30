@@ -16,3 +16,6 @@ venv.bak/
 
 ## The Google Authentication key
 key.json
+
+## The solutions to the exercises
+/demo-app/streamlit_app/solutions/
