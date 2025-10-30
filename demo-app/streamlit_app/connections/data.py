@@ -1,54 +1,36 @@
+import os
+from pathlib import Path
 from google.cloud import bigquery
 import pandas as pd
+import streamlit as st
 
 
-def fetch_covid_data() -> pd.DataFrame:
-    """
-    Fetches person profiles from BigQuery.
-
-    Returns:
-        pd.DataFrame: DataFrame containing covid data
-    """
-    client = bigquery.Client(project="sensei-seeker", location="US")
-    query = """
-        SELECT * FROM `bigquery-public-data.covid19_open_data.covid19_open_data` LIMIT 10
-    """
-
-    return client.query(query).to_dataframe()
+APP_DIR = "streamlit_app"
+SQL_QUERIES_DIR = "sql_queries"
 
 
-def fetch_sandi_data(
-    table_name: str = "sensei-seeker.sandi.profiles_2024",
-) -> pd.DataFrame:
-    """
-    Fetches person profiles from BigQuery.
-
-    Returns:
-        pd.DataFrame: DataFrame containing profile data
-    """
-    client = bigquery.Client(project="sensei-seeker", location="EU")
-    query = f"""
-        SELECT Person, Level, Level_code, Level_number, Client 
-        FROM {table_name}
-    """
-
-    return client.query(query).to_dataframe()
+def load_query(filepath: str) -> str:
+    """Loads a SQL query from a .sql file."""
+    try:
+        return Path(filepath).read_text()
+    except FileNotFoundError:
+        st.error(f"Error: SQL file not found at {filepath}")
+        return ""
 
 
-def fetch_iris_data() -> pd.DataFrame:
-    client = bigquery.Client(project="sensei-seeker", location="US")
-    query = """
-        SELECT *
-        FROM bigquery-public-data.ml_datasets.iris
-    """
+@st.cache_data
+def fetch_belgian_weather_data(project_id: str = "sensei-seeker") -> pd.DataFrame:
+    """The SQL logic is stored in 'get_belgian_weather.sql'."""
 
-    return client.query(query).to_dataframe()
+    # Load the query from the separate .sql file
+    sql_query = load_query(
+        os.path.join(os.getcwd(), APP_DIR, SQL_QUERIES_DIR, "get_belgian_weather.sql")
+    )
 
+    if not sql_query:
+        st.stop()
 
-def fetch_census_data() -> pd.DataFrame:
-    client = bigquery.Client(project="sensei-seeker", location="US")
-    query = """
-        SELECT *
-        FROM bigquery-public-data.ml_datasets.census_adult_income
-    """
-    return client.query(query).to_dataframe()
+    client = bigquery.Client(project=project_id, location="US")
+    st.write(f"*(Running query on project: `{project_id}`)*")
+
+    return client.query(sql_query).to_dataframe()

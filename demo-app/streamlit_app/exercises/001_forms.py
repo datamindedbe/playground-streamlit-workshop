@@ -1,8 +1,8 @@
 import streamlit as st
-from streamlit_app.connections.data import fetch_sandi_data
+from streamlit_app.connections.data import fetch_belgian_weather_data
 
 # Get the data
-df = fetch_sandi_data()
+df = fetch_belgian_weather_data()
 
 st.title("Forms")
 
