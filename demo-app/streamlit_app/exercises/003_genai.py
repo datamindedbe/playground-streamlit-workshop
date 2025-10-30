@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("GenAI Weather Analyst 🤖")
+st.title("GenAI Weather Analyst")
 
 st.header("Assignment 1: LLM with DataFrame Context")
 
@@ -20,10 +20,11 @@ st.header("Assignment 2: LLM with Google Search")
 st.markdown("""
 **Assignment**:
 
-- Create an application where a user can ask for the **current weather** in a Belgian city.
-- The LLM must use **Google Search** to find the real-time answer.
-- Display the result.
-- **Hint**: You'll need to add the `tools` key to your API payload.
+- Create an LLM application that is able to enrich your existing DataFrame by adding a new column.
+- The app must send the user's enrichment request **and** the `df` DataFrame to the LLM.
+- Display the LLM's answer.
+    - **Hint 1**: Convert the DataFrame to a comma-seperated string using `df.to_csv()`.
+    - **Hint 2**: Explicitly mention in the instructions to return the data in csv-format, and only return the data itself.
 """)
 
 # --- your code here ---
