@@ -18,7 +18,9 @@ WITH
   BELGIAN_STATION_DATA AS (
   SELECT
     usaf,
-    name
+    name, 
+    lat, 
+    lon
   FROM
     `bigquery-public-data.noaa_gsod.stations`
   WHERE
@@ -32,7 +34,9 @@ SELECT
   -- Convert to easier to understand metrics (Celsius, millimeter and kilometer per hour)
   ROUND((W.avg_temp_f - 32) * 5 / 9, 1) AS avg_temp_celsius,
   ROUND((W.min_temp_f - 32) * 5 / 9, 1) AS min_temp_celsius,
-  ROUND((W.max_temp_f - 32) * 5 / 9, 1) AS max_temp_celsius
+  ROUND((W.max_temp_f - 32) * 5 / 9, 1) AS max_temp_celsius, 
+  B.lat,
+  B.lon
 FROM
   WEATHER_DATA AS W
 INNER JOIN
