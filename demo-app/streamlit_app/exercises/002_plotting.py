@@ -1,29 +1,26 @@
 import streamlit as st
-from streamlit_app.connections.data import fetch_belgian_weather_data
 
-st.title("Plotting")
+st.title("Plotting Belgian Weather")
 
 
-# Get the data
-df = fetch_belgian_weather_data()
-
-st.header("Assignment 1: Plotting")
+st.header("Assignment 1: Plotting a Pie Chart")
 
 st.markdown("""
 **Assignment**:
-
-- Plot a pie chart with the level distribution
+- Plot a pie chart showing the share of **total annual precipitation** for each station.
+- **Hint 1**: You'll need to `groupby` the `station_name` and `sum` the `precipitation_mm`.
+- **Hint 2**: Use `st.plotly_chart` with `plotly.express.pie` for a nice chart.
 """)
 
 # --- your code here ---
 
-st.header("Assignment 2: Plot a bar chart")
+st.header("Assignment 2: Plot a Bar Chart")
 
 st.markdown("""
 **Assignment**:
-
-- Plot a bar chart with the level distribution
+- Plot a bar chart showing the **average annual temperature** for each station.
+- **Hint 1**: You'll need to `groupby` the `station_name` and get the `mean` of `avg_temp_celsius`.
+- **Hint 2**: `st.bar_chart` is the simplest way.
 """)
-
 
 # --- your code here ---

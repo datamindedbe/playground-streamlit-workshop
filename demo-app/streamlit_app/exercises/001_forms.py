@@ -15,6 +15,8 @@ st.markdown("""
 6.  **Outside** the form, display the filtered data in a table (`st.dataframe`).
 """)
 
+# --- your code here ---
+
 st.header("Assignment 2: Caching")
 
 st.markdown("""
@@ -22,3 +24,5 @@ st.markdown("""
 - The app re-runs the *entire* BigQuery query every time. This is slow and expensive!
 - Add **caching** to your `load_data()` function to fix this.
 """)
+
+# --- your code here ---
