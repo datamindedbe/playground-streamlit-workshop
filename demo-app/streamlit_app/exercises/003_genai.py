@@ -10,7 +10,7 @@ st.markdown("""
 - Create an application where a user can ask a question about the **2025 weather data**.
 - The app must send the user's question **and** the `df` DataFrame (as a string) to the LLM.
 - Display the LLM's answer.
-- **Hint**: Convert the DataFrame to a string using `df.to_string()`.
+    - **Hint 1**: Convert the DataFrame to a string using `df.to_string()`.
 """)
 
 # --- your code here ---
