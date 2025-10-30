@@ -1,11 +1,13 @@
 import streamlit as st
-from streamlit_app.connections.data import fetch_sandi_data
+from streamlit_app.connections.data import fetch_covid_data
 
 st.title("Plotting")
 
 
 # Get the data
-df = fetch_sandi_data()
+df = fetch_covid_data()
+
+st.dataframe(df)
 
 st.header("Assignment 1: Plotting")
 
