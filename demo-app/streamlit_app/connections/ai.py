@@ -1,5 +1,5 @@
 import google.generativeai as genai
-
+from PIL import Image
 
 # TODO
 def pass_upload_to_ai():
@@ -33,3 +33,18 @@ def get_ai_response_on_stringified_dataframe(
     response = model.generate_content(content_to_send)
 
     return response.text
+
+
+def get_ai_response_on_image(
+    prompt:str, 
+    image: Image,
+    model_name: str = "gemini-2.0-flash"
+) -> str:
+
+    content_to_send = [prompt, image]
+    model = genai.GenerativeModel("gemini-2.0-flash")
+
+    response = model.generate_content(contents=content_to_send)
+    
+    return response.text if getattr(response, "text", None) else "No text response."
+
