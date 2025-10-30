@@ -1,5 +1,4 @@
--- This file contains the SQL logic to fetch Belgian weather data.
-
+  -- This file contains the SQL logic to fetch Belgian weather data.
 WITH
   WEATHER_DATA AS (
   SELECT
@@ -12,29 +11,25 @@ WITH
     NULLIF(max, 9999.9) AS max_temp_f,
     NULLIF(min, 9999.9) AS min_temp_f
   FROM
-    `bigquery-public-data.noaa_gsod.gsod2025`
-  ),
-  
+    `bigquery-public-data.noaa_gsod.gsod2025` ),
   BELGIAN_STATION_DATA AS (
   SELECT
     usaf,
-    name, 
-    lat, 
+    name,
+    lat,
     lon
   FROM
     `bigquery-public-data.noaa_gsod.stations`
   WHERE
     -- Only focus on Belgian weather data
-    country = 'BE'
-  )
-
+    country = 'BE' )
 SELECT
   B.name AS station_name,
   W.date,
   -- Convert to easier to understand metrics (Celsius, millimeter and kilometer per hour)
   ROUND((W.avg_temp_f - 32) * 5 / 9, 1) AS avg_temp_celsius,
   ROUND((W.min_temp_f - 32) * 5 / 9, 1) AS min_temp_celsius,
-  ROUND((W.max_temp_f - 32) * 5 / 9, 1) AS max_temp_celsius, 
+  ROUND((W.max_temp_f - 32) * 5 / 9, 1) AS max_temp_celsius,
   B.lat,
   B.lon
 FROM
