@@ -9,6 +9,7 @@ st.markdown("""
 - Plot a pie chart showing the share of **total annual precipitation** for each station.
     - **Hint 1**: You'll need to `groupby` the `station_name` and `sum` the `precipitation_mm`.
     - **Hint 2**: Use `st.plotly_chart` with `plotly.express.pie` for a nice chart.
+    - ⚠️ Use built in stuff
 """)
 
 # --- your code here ---

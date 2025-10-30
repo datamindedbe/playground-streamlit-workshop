@@ -13,6 +13,7 @@ st.markdown("""
 4.  Inside the form, add a **date range slider** to filter by date (`st.slider`).
 5.  Add a "Submit" button (`st.form_submit_button`).
 6.  **Outside** the form, display the filtered data in a table (`st.dataframe`).
+7.  ⚠️ Map as extra assignment
 """)
 
 # --- your code here ---

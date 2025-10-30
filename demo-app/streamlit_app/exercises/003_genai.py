@@ -27,4 +27,14 @@ st.markdown("""
     - **Hint 2**: Explicitly mention in the instructions to return the data in csv-format, and only return the data itself.
 """)
 
+st.header("Assignment 3: Add new entry to existing dataset based on image")
+
+st.markdown("""
+**Assignment**:
+- Search for an image with weather data
+- Upload file to AI
+- Add new entry to DF after classification
+""")
+
+
 # --- your code here ---

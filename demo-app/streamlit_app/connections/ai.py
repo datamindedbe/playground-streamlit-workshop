@@ -1,6 +1,11 @@
 import google.generativeai as genai
 
 
+# TODO
+def pass_upload_to_ai():
+    pass
+
+
 def get_ai_response_on_stringified_dataframe(
     prompt: str,
     stringified_dataframe: str,
